@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title> Payments </title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><span th:text="${clientName}"> clientName </span>'s Payments </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Value </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${payments.empty}">
+                    <td colspan="2"> No Payments Available </td>
+                </tr>
+                <tr th:each="payment : ${payments}">
+                    <td><span th:text="${payment.id}"> Id </span> </td>
+                    <td><span th:text="${payment.value}"> Value </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-info" href="#" th:href="@{/clients}"> Back to Clients </a>
+            <a class="btn btn-success" href="#" th:href="@{/payments/create (clientName=${clientName},clientId=${clientId})}"> Create Payment </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
